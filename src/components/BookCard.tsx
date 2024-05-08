@@ -1,22 +1,15 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea,Typography ,Button, CardMedia, Card, CardContent} from '@mui/material';
 import "../App.css"
 
 interface Props {
-    key: number,
     image: string;
     authorName: string;
     description: string;
     link: string;
 }
 
-const BookCard: React.FC<Props> = ({ key, image, authorName, description, link }: Props) => {
+const BookCard: React.FC<Props> = ({ image, authorName, description, link }: Props) => {
     const cardStyle = {
         width: '20rem',
         padding: '20px',

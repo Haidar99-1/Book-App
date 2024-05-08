@@ -1,4 +1,3 @@
-import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import {Action, DispatchType} from "../constants"
 
@@ -10,7 +9,7 @@ interface Props {
     dispatch: (value: Action) => void,
     placeholder: string
 }
-
+// dont need the InputField component. you can add TextField in the DropDownForm
 const InputField: React.FC<Props> = ({ id, label, value, dispatchType,dispatch, placeholder }) => {
     return (
         <div>
@@ -27,3 +26,5 @@ const InputField: React.FC<Props> = ({ id, label, value, dispatchType,dispatch, 
 }
 
 export default InputField
+
+

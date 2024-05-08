@@ -16,6 +16,8 @@ app.get("/", (req: Request, res: Response) => {
 
 //https://www.googleapis.com/books/v1/volumes?q=inauthor:"Richard+Moreno"
 
+// look into grapping the speicific data or data need to the UI 
+
 app.get('/authorSearch/', async (req: Request, res: Response) => {
   try {
     const { authorName } = req.query;

@@ -10,19 +10,20 @@ type Props = {
 const BookLibrary: React.FC<Props> = ({ state }) => {
     const [ loading, setLoading ] = useState(false);
 
-    useEffect(() => {
-        
-    }, [])
+    // use one type of style, either in-line styling, sheet styling 
     const cardsContainerStyle = {
         display: 'flex',
         flexFlow: 'row wrap',
         gap: '50px',
         justifyContent: 'center',
     }
+    // init, loading, error, empty
+    // change the return statement by decide whats the current state, if we have data in bookList and authorList
+    // then return a BookCard
     return (
         <>
             <div style={cardsContainerStyle}>
-                {state.bookList.length > 0  ?
+                {state.bookList ?
                     state.bookList.map((bookObj, index) => {
                         return (
                             <BookCard
@@ -48,7 +49,8 @@ const BookLibrary: React.FC<Props> = ({ state }) => {
                             )
                              
                         })
-                        : <Alert severity="info">No books found</Alert>
+                        : 
+                        <Alert severity="info">No books found</Alert>
                         // <CircularProgress/>
                 }
 
@@ -56,6 +58,5 @@ const BookLibrary: React.FC<Props> = ({ state }) => {
         </>
     )
 }
-
 
 export default BookLibrary

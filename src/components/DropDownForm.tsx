@@ -10,15 +10,17 @@ import { useFetchNYT } from '../hooks/useFetchNYT';
 import { useFetchGoogle } from '../hooks/useFetchGoogle';
 import Box from '@mui/material/Box';
 import "../App.css";
-
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+// important things at once. import all things in one line of code 
 type Props = {
-    state: State,
+    state: State, // don't use the same interface name as state
     dispatch: React.Dispatch<ActionType>
 }
 
 const DropDownForm: React.FC<Props> = ({ state, dispatch }) => {
     const generateUrl = (base: string, query: string) => `http://localhost:3001/${base}?${query}`
-    
+
+    // be consistent with the naming
     const urls: { [key: string]: string } = {
         'Author': generateUrl('authorSearch', `authorName=${state.authorSearch}`),
         'ISBN': generateUrl('isbnSearch', `isbn=${state.isbnSearch}`),
@@ -28,6 +30,8 @@ const DropDownForm: React.FC<Props> = ({ state, dispatch }) => {
 
     const { nytApiCall } = useFetchNYT();
     const { googleApiCall } = useFetchGoogle();
+    // handlechange and handlesubmit they change everytime there is a re-render. only change if the input event changes (useCallback)
+    // read more on https://react.dev/reference/react/useCallback, check if needed
 
     const handleChange = (event: SelectChangeEvent<string>) => {
         dispatch({ type: 'SET_SELECTED_VALUE', payload: event.target.value });
@@ -35,6 +39,8 @@ const DropDownForm: React.FC<Props> = ({ state, dispatch }) => {
   
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        // dont have magic strings, use a constant instead
+        // business logic in the server
         if (state.selectedValue !== 'NY Best seller Search') {
             googleApiCall(urls[state.selectedValue], 'SET_GOOGLE_BOOKS', dispatch);
         } else {
@@ -43,13 +49,23 @@ const DropDownForm: React.FC<Props> = ({ state, dispatch }) => {
         dispatch({ type: 'RESET_STATE', payload: null})
     }
 
+    // const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
+    //     event.preventDefault();
+    //     if (state.selectedValue !== 'NY Best seller Search') {
+    //         googleApiCall(urls[state.selectedValue], 'SET_GOOGLE_BOOKS', dispatch);
+    //     } else {
+    //         nytApiCall(urls[state.selectedValue], dispatch);
+    //     }
+    //     dispatch({ type: 'RESET_STATE', payload: null})
+    // },[state.selectedValue])
+    
+
     return (
         <Box>
             <form className='drop-down-container' onSubmit={handleSubmit}>
                 <FormControl sx={{ width: 350 }}>
                     <InputLabel id="demo-simple-select-standard-label">Search</InputLabel>
                     <Select
-
                         value={state.selectedValue}
                         onChange={handleChange}
                     >
@@ -106,5 +122,5 @@ const DropDownForm: React.FC<Props> = ({ state, dispatch }) => {
         </Box>
     )
 }
-
+// look into https://mui.com/x/react-date-pickers/date-calendar/ instead a user manually types 
 export default DropDownForm;

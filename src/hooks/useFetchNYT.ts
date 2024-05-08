@@ -1,8 +1,8 @@
 import { ActionType} from '../types/useReducerTypes'
 import { Response } from '../types/newYorkTimesApiResponse'
-
+//don't use tsx for a custom hook, use ts instead
 export const useFetchNYT = () => {
-
+    // think about caching =>   cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
     function nytApiCall(url: string, dispatch: React.Dispatch<ActionType>) {
         fetch(url, {
             method: 'GET',

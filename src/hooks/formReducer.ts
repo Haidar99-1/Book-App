@@ -38,5 +38,4 @@ export const formReducer = (state: State, action: ActionType) => {
         default:
             return state;
     }
-
 }
