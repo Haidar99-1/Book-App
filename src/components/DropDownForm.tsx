@@ -10,7 +10,6 @@ import { useFetchNYT } from '../hooks/useFetchNYT';
 import { useFetchGoogle } from '../hooks/useFetchGoogle';
 import Box from '@mui/material/Box';
 import "../App.css";
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 // important things at once. import all things in one line of code 
 type Props = {
     state: State, // don't use the same interface name as state

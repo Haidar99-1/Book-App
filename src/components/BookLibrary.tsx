@@ -2,7 +2,8 @@ import BookCard from "./BookCard"
 import { State } from "../types/useReducerTypes"
 import { Alert, CircularProgress } from "@mui/material"
 import { useEffect, useState } from "react"
-
+const uuid = require('uuid');
+const uuid4 = uuid.v4()
 type Props = {
     state: State
 }
@@ -24,10 +25,10 @@ const BookLibrary: React.FC<Props> = ({ state }) => {
         <>
             <div style={cardsContainerStyle}>
                 {state.bookList ?
-                    state.bookList.map((bookObj, index) => {
+                    state.bookList.map((bookObj) => {
                         return (
                             <BookCard
-                                key={index}
+                                key={uuid4}
                                 image={bookObj.book_image}
                                 authorName={bookObj.author}
                                 description={bookObj.description}
